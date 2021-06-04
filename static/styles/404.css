@@ -1,0 +1,75 @@
+@font-face {
+    font-family: Monsterrat;
+    src: url('../fonts/Montserrat-Thin.ttf');
+}
+
+@font-face {
+    font-family: MonsterratBold;
+    src: url('../fonts/Montserrat-Medium.ttf');
+}
+
+.page {
+    margin: 0;
+    font-family: MonsterratBold;
+}
+
+.header {
+    border-bottom: 1px rgb(223, 223, 223) solid;
+    height: 45px;
+    font-family: MonsterratBold;
+    padding: 10px 10%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    background-color: #FFED00;
+    padding: 15px;
+    box-shadow: 2px 2px 3px grey;
+    letter-spacing: 1px;
+    text-decoration: none;
+    color: black;
+}
+
+.nav {
+    margin-top: 15px;
+}
+
+.nav__item {
+    text-decoration: none;
+    color: black;
+    margin-left: 20px;
+}
+
+.warning-button {
+    text-decoration: none;
+    color: white;
+    background-color: rgb(182, 42, 42);
+    height: 50%;
+    border-radius: 30px;
+    padding: 5px 20px;
+    float: right;
+}
+
+.header__warning-button {
+    margin-top: 10px;
+    float: right;
+}
+
+.header__invite {
+    padding: 15px;
+    float: right;
+}
+
+.header__profile {
+    padding: 15px;
+    float: right;
+}
+
+.content {
+    background-image: url('../images/Monster\ 404\ Error-cuate\ 1.svg');
+    background-position: center;
+    background-size: 50%;
+    background-repeat: no-repeat;
+    height: 100vh;
+}

@@ -21,7 +21,9 @@ func main() {
 	app.Get("/main", server.MainHandler)
 	app.Get("/ads", server.AdsHandler)
 	app.Get("/theme", server.ThemeHandler)
-	app.Get("/new_theme", server.NewThemeHandler)
+	app.All("/new_theme", server.NewThemeHandler)
+
+	app.Use(server.NotFoundHandler)
 
 	app.Listen(":" + os.Getenv("PORT"))
 }

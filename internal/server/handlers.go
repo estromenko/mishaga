@@ -40,5 +40,12 @@ func ThemeHandler(c *fiber.Ctx) error {
 }
 
 func NewThemeHandler(c *fiber.Ctx) error {
-	return c.Render("new_theme", fiber.Map{})
+	if c.Method() == "GET" {
+		return c.Render("new_theme", fiber.Map{})
+	}
+	return c.Redirect("/main")
+}
+
+func NotFoundHandler(c *fiber.Ctx) error {
+	return c.Render("404", fiber.Map{})
 }
