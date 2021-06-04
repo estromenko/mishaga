@@ -1,0 +1,147 @@
+@font-face {
+    font-family: Monsterrat;
+    src: url('../fonts/Montserrat-Thin.ttf');
+}
+
+@font-face {
+    font-family: MonsterratBold;
+    src: url('../fonts/Montserrat-Medium.ttf');
+}
+
+
+.page {
+    margin: 0;
+    font-family: MonsterratBold;
+}
+
+.header {
+    border-bottom: 1px rgb(223, 223, 223) solid;
+    height: 45px;
+    font-family: MonsterratBold;
+    padding: 10px 10%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    background-color: #FFED00;
+    padding: 15px;
+    box-shadow: 2px 2px 3px grey;
+    letter-spacing: 1px;
+    text-decoration: none;
+    color: black;
+}
+
+.nav {
+    margin-top: 15px;
+}
+
+.nav__item {
+    text-decoration: none;
+    color: black;
+    margin-left: 20px;
+}
+
+.warning-button {
+    text-decoration: none;
+    color: white;
+    background-color: rgb(182, 42, 42);
+    height: 50%;
+    border-radius: 30px;
+    padding: 5px 20px;
+    float: right;
+}
+
+.header__warning-button {
+    margin-top: 10px;
+    float: right;
+}
+
+.header__invite {
+    padding: 15px;
+    float: right;
+}
+
+.header__profile {
+    padding: 15px;
+    float: right;
+}
+
+
+.content {
+    padding: 50px 10%;
+}
+
+.content__comment {
+    background-color: rgb(233, 233, 233);
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    margin: 30px 0;
+}
+
+.comment__image-box {
+    border-right: 1px rgb(187, 187, 187) solid;
+    display: inline-block;
+    text-align: center;
+}
+
+.image-box__image {
+    border-radius: 100px;
+    margin: 10px;
+}
+
+.comment__text {
+    margin: 20px;
+}
+
+.commenting__input {
+    outline: none;
+    border: 1px rgb(199, 199, 199) solid;
+    width: 90%;
+    height: 50px;
+    border-radius: 20px 0 0 20px;
+}
+
+.commenting__send {
+    float: right;
+    height: 52px;
+    width: 9%;
+    border-radius: 0 20px 20px 0;
+    border: 0;
+    background-color: #3C64B1;
+    margin: 2px;
+    text-align: center;
+}
+
+.commenting__send__image {
+    margin: 15px;
+}
+
+.commenting__anonim {
+    margin-top: 20px;
+}
+
+.footer {
+    border-top: 1px rgb(199, 199, 199) solid;
+    height: 100px;
+    padding: 20px 10%;
+    display: flex;
+    justify-content: center;
+}
+
+.footer__item {
+    border-left: 1px rgb(199, 199, 199) solid;
+    text-align: center;
+    width: 40%;
+}
+
+.footer__item_unbordered {
+    border-left: 0;
+}
+
+.footer__item__header {
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 20px;
+}

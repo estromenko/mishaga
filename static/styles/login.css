@@ -1,0 +1,94 @@
+@font-face {
+    font-family: Monsterrat;
+    src: url('../fonts/Montserrat-Thin.ttf');
+}
+
+@font-face {
+    font-family: MonsterratBold;
+    src: url('../fonts/Montserrat-Medium.ttf');
+}
+
+.page {
+    background: white;
+    background-image: url('../images/loon-image-original\ 1.png ');
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 100% 100%;
+    margin: 0;
+    height: 100vh;
+    font-family: Monsterrat;
+}
+
+.login {
+    width: 40%;
+    min-width: 500px;
+    height: 100vh;
+    text-align: center;
+    background-color: white;
+}
+
+.page__login {
+    margin: 0;
+    padding-top: 10%;
+    float: left;
+}
+
+.login__form {
+    border: 2px rgb(111, 111, 255) dashed;
+    margin: 10% 20% 0 20%;
+    border-radius: 10px;
+}
+
+.form__input {
+    outline: none;
+    border: 0px;
+    width: 80%;
+    margin: 3%;
+    background-color: rgb(235, 235, 235);
+    border-radius: 10px;
+    padding: 7%;
+}
+
+.login__buttons {
+    margin: 10px 20% 0 20%;
+}
+
+.login__buttons__remember {
+    float: left;
+    margin-left: 7px;
+    font-family: MonsterratBold;
+}
+
+.login__buttons__forget {
+    float: right;
+    text-decoration: none;
+    color: black;
+    margin-right: 5px;
+    font-family: MonsterratBold;
+}
+
+.login__buttons__submit {
+    margin-top: 30px;
+    border: 0;
+    color: black;
+    background-color: #FFED00;
+    font-family: MonsterratBold;
+    width: 80%;
+    padding: 10px;
+    box-shadow: 2px 2px 10px grey;
+}
+
+.intro {
+    text-align: center;
+    color: #FFED00;
+    font-weight: bold;
+    padding-top: 20%;
+    font-size: 64px;
+    font-family: MonsterratBold;
+}
+
+.intro__subtext {
+    font-size: 18px;
+    color: white;
+}
+

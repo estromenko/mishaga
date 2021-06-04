@@ -1,0 +1,136 @@
+@font-face {
+    font-family: Monsterrat;
+    src: url('../fonts/Montserrat-Thin.ttf');
+}
+
+@font-face {
+    font-family: MonsterratBold;
+    src: url('../fonts/Montserrat-Medium.ttf');
+}
+
+.page {
+    margin: 0;
+    font-family: MonsterratBold;
+}
+
+.header {
+    border-bottom: 1px rgb(223, 223, 223) solid;
+    height: 45px;
+    font-family: MonsterratBold;
+    padding: 10px 10%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    background-color: #FFED00;
+    padding: 15px;
+    box-shadow: 2px 2px 3px grey;
+    letter-spacing: 1px;
+    text-decoration: none;
+    color: black;
+}
+
+.nav {
+    margin-top: 15px;
+}
+
+.nav__item {
+    text-decoration: none;
+    color: black;
+    margin-left: 20px;
+}
+
+.warning-button {
+    text-decoration: none;
+    color: white;
+    background-color: rgb(182, 42, 42);
+    height: 50%;
+    border-radius: 30px;
+    padding: 5px 20px;
+    float: right;
+}
+
+.header__warning-button {
+    margin-top: 10px;
+    float: right;
+}
+
+.header__invite {
+    padding: 15px;
+    float: right;
+}
+
+.header__profile {
+    padding: 15px;
+    float: right;
+}
+
+
+.content {
+    text-align: center;
+}
+
+.content__form {
+    width: 400px;
+    display: inline-block;
+    text-align: left;
+}
+
+.content__input {
+    outline: none;
+    margin-top: 10px;
+    width: 100%;
+    border: 1px grey solid;
+    border-radius: 10px;
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.content__description {
+    outline: none;
+    width: 100%;
+    margin-top: 10px;
+    border: 1px grey solid;
+    border-radius: 10px;
+    resize: none;
+    height: 200px;
+}
+
+.content__buttons {
+    margin-top: 20px;
+}
+
+.content__submit {
+    border: 0;
+    padding: 10px;
+    width: 400px;
+    background-color: #FFED00;
+    font-family: MonsterratBold;
+    margin: 20px 0 200px 0;
+    box-shadow: 2px 2px 5px grey;
+}
+
+.footer {
+    border-top: 1px rgb(199, 199, 199) solid;
+    height: 100px;
+    padding: 20px 10%;
+    display: flex;
+    justify-content: center;
+}
+
+.footer__item {
+    border-left: 1px rgb(199, 199, 199) solid;
+    text-align: center;
+    width: 40%;
+}
+
+.footer__item_unbordered {
+    border-left: 0;
+}
+
+.footer__item__header {
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 20px;
+}

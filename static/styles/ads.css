@@ -1,0 +1,163 @@
+@font-face {
+    font-family: Monsterrat;
+    src: url('../fonts/Montserrat-Thin.ttf');
+}
+
+@font-face {
+    font-family: MonsterratBold;
+    src: url('../fonts/Montserrat-Medium.ttf');
+}
+
+.page {
+    margin: 0;
+    font-family: MonsterratBold;
+}
+
+.header {
+    border-bottom: 1px rgb(223, 223, 223) solid;
+    height: 45px;
+    font-family: MonsterratBold;
+    padding: 10px 10%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    background-color: #FFED00;
+    padding: 15px;
+    box-shadow: 2px 2px 3px grey;
+    letter-spacing: 1px;
+    text-decoration: none;
+    color: black;
+}
+
+.nav {
+    margin-top: 15px;
+}
+
+.nav__item {
+    text-decoration: none;
+    color: black;
+    margin-left: 20px;
+}
+
+.warning-button {
+    text-decoration: none;
+    color: white;
+    background-color: rgb(182, 42, 42);
+    height: 50%;
+    border-radius: 30px;
+    padding: 5px 20px;
+    float: right;
+}
+
+.header__warning-button {
+    margin-top: 10px;
+    float: right;
+}
+
+.header__invite {
+    padding: 15px;
+    float: right;
+}
+
+.header__profile {
+    padding: 15px;
+    float: right;
+}
+
+.content {
+    padding: 20px 10%;
+}
+
+.content__nav {
+    text-align: center;
+}
+
+.content__nav__item {
+    display: inline-block;
+    padding: 10px;
+    width: 100px;
+    border: 1px rgb(221, 221, 221) solid;
+    text-decoration: none;
+    color: black;
+    margin: 0 10px;
+}
+
+.content__nav__item:hover {
+    background-color: rgb(221, 221, 221);
+}
+
+.content__nav__create-ad {
+    position: absolute;
+    right: 10%;
+    top: 85px;
+
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+    background-color: #FFED00;
+    box-shadow: 2px 2px 5px grey;
+}
+
+.content__item {
+    color: black;
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    display: flex;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-decoration: none;
+    justify-content: space-between;
+    background-color: rgb(230, 230, 230);
+
+}
+
+.content__item__text {
+    width: 50%;
+    margin: 10px;
+}
+
+.content__item__text__header {
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.content__item__more {
+    margin-top: 50px;
+    margin-right: 20px;
+    height: 20px;
+    text-align: center;
+    width: 150px;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+    background-color: #FFED00;
+    box-shadow: 2px 2px 5px grey;
+    border-radius: 10px;
+}
+
+.footer {
+    border-top: 1px rgb(199, 199, 199) solid;
+    height: 100px;
+    padding: 20px 10%;
+    display: flex;
+    justify-content: center;
+}
+
+.footer__item {
+    border-left: 1px rgb(199, 199, 199) solid;
+    text-align: center;
+    width: 40%;
+}
+
+.footer__item_unbordered {
+    border-left: 0;
+}
+
+.footer__item__header {
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 20px;
+}
