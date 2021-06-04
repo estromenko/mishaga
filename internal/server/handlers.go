@@ -6,6 +6,10 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
+func IndexHandler(c *fiber.Ctx) error {
+	return c.Redirect("reg")
+}
+
 func RegistrationHandler(c *fiber.Ctx) error {
 	if c.Method() == "GET" {
 		return c.Render("reg", fiber.Map{})

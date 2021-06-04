@@ -15,6 +15,7 @@ func main() {
 	})
 
 	app.Static("/static", "static")
+	app.All("/", server.IndexHandler)
 	app.All("/reg", server.RegistrationHandler)
 	app.All("/login", server.LoginHandler)
 	app.Get("/main", server.MainHandler)
