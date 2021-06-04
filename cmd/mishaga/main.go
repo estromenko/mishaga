@@ -2,6 +2,7 @@ package main
 
 import (
 	"mishaga/internal/server"
+	"os"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/template/django"
@@ -21,5 +22,5 @@ func main() {
 	app.Get("/theme", server.ThemeHandler)
 	app.Get("/new_theme", server.NewThemeHandler)
 
-	app.Listen(":8000")
+	app.Listen(":" + os.Getenv("PORT"))
 }
