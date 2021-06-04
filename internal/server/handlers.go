@@ -46,6 +46,10 @@ func NewThemeHandler(c *fiber.Ctx) error {
 	return c.Redirect("/main")
 }
 
+func ProfileHandler(c *fiber.Ctx) error {
+	return c.Render("profile", fiber.Map{})
+}
+
 func NotFoundHandler(c *fiber.Ctx) error {
 	return c.Render("404", fiber.Map{})
 }

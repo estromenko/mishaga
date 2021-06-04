@@ -22,6 +22,7 @@ func main() {
 	app.Get("/ads", server.AdsHandler)
 	app.Get("/theme", server.ThemeHandler)
 	app.All("/new_theme", server.NewThemeHandler)
+	app.All("/profile", server.ProfileHandler)
 
 	app.Use(server.NotFoundHandler)
 

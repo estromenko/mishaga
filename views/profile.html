@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="static/styles/profile.css">
+    <title>Профиль</title>
+</head>
+<body class="page">
+    <header class="header page__header">
+        <a href="main" class="logo header__logo">
+            <b>МЫЩ</b>АГА
+        </a>
+        <nav class="nav header__nav">
+            <a href="main" class="nav__item">Главная</a>
+            <a href="ads" class="nav__item">Объявления</a>
+            <a href="#" class="nav__item">Стол заявок</a>
+            <a href="#" class="nav__item">Мероприятия</a>
+        </nav>
+        <nav>
+            <a href="/profile">
+                <img src="static/images/profile.png" class="profile header__profile">
+            </a>
+            <a href="#">
+                <img src="static/images/bell.png" class="invite header__invite">
+            </a>
+            <a href="#" class="warning-button header__warning-button">
+                Тревога
+            </a>
+        </nav>
+    </header>
+    <div class="content">
+        <h3>Профиль</h3>
+        <form class="profile content__profile">
+            <div class="profile__image">
+                <img src="static/images/monke1.jpg" class="image__source"><br>
+                
+                <input type="file" id="image" style="display:none;">
+                <label for="image" class="image__upload-button">Загрузить аватар</label>
+            </div>
+            <table class="profile__update-form">
+                <tr>
+                    <td>
+                        <label>ФИО</label><br>
+                        <input type="text" class="profile__input">
+                    </td>
+                    <td>
+                        <label>ВУЗ</label><br>
+                        <input type="text" class="profile__input">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Почта</label><br>
+                        <input type="email" class="profile__input">
+                    </td>
+                    <td>
+                        <label>Общежитие</label><br>
+                        <input type="text" class="profile__input">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Пароль</label><br>
+                        <input type="text" class="profile__input">
+                    </td>
+                    <td>
+                        <label>Номер комнаты</label><br>
+                        <input type="number" class="profile__input">
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" class="profile__submit">
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <form class="invitations content__invitations">
+            <h3>Приглашения</h3>
+            <input type="email" class="invitations__input" placeholder="Введите email">
+            <input type="submit" class="invitations__submit" value="Отправить">
+        </form>
+        <table class="invitation-list">
+            <tr>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Дата отправки
+                </th>
+                <th>
+                    Статус
+                </th>
+            </tr>
+            <tr class="invitation-list__item">
+                <td>
+                    emailemail@email.email
+                </td>
+                <td>
+                    5/27/15
+                </td>
+                <td>
+                    <img src="static/images/accepted_invitations.png">
+                </td>
+            </tr>
+            <tr class="invitation-list__item">
+                <td>
+                    emailemail@email.email
+                </td>
+                <td>
+                    5/27/15
+                </td>
+                <td>
+                    <img src="static/images/unaccepted_invitations.png">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="footer page__footer">
+        <div class="footer__item footer__item_unbordered">
+            <a class="footer__item__header">Контакты</a><br>
+            +7999-999-99-99<br>
+            +7999-999-99-99<br>
+            +7999-999-99-99<br>
+        </div>
+        <div class="footer__item">
+            <a class="footer__item__header">Еще контакты</a><br>
+            +7888-888-88-88<br>
+            +7888-888-88-88<br>
+            +7888-888-88-88<br>
+        </div>
+        <div class="footer__item">
+            <a class="footer__item__header">Еще больше контактов</a><br>
+            testemail@email.email<br>
+            testemail@email.email<br>
+            testemail@email.email<br>
+        </div>
+    </div>
+</body>
+</html>
