@@ -1,30 +1,19 @@
 package main
 
 import (
-	"mishaga/internal/server"
-	"os"
-
-	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/template/django"
+	"flag"
+	"log"
+	"mishaga/internal/app"
 )
 
+var (
+	configPath string
+)
+
+func init() {
+	flag.StringVar(&configPath, "config", "configs/example.json", "Path to config file")
+}
+
 func main() {
-	engine := django.New("./views", ".html")
-	app := fiber.New(fiber.Config{
-		Views: engine,
-	})
-
-	app.Static("/static", "static")
-	app.All("/", server.IndexHandler)
-	app.All("/reg", server.RegistrationHandler)
-	app.All("/login", server.LoginHandler)
-	app.Get("/main", server.MainHandler)
-	app.Get("/ads", server.AdsHandler)
-	app.Get("/theme", server.ThemeHandler)
-	app.All("/new_theme", server.NewThemeHandler)
-	app.All("/profile", server.ProfileHandler)
-
-	app.Use(server.NotFoundHandler)
-
-	app.Listen(":" + os.Getenv("PORT"))
+	log.Fatal(app.Run(configPath))
 }
