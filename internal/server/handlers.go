@@ -73,7 +73,10 @@ func (s *Server) LoginHandler(c *fiber.Ctx) error {
 }
 
 func (s *Server) MainHandler(c *fiber.Ctx) error {
-	return c.Render("main", fiber.Map{})
+	themes := s.repos.ThemeRepo.GetAll()
+	return c.Render("main", fiber.Map{
+		"themes": themes,
+	})
 }
 
 func (s *Server) AdsHandler(c *fiber.Ctx) error {
@@ -88,6 +91,11 @@ func (s *Server) NewThemeHandler(c *fiber.Ctx) error {
 	if c.Method() == "GET" {
 		return c.Render("new_theme", fiber.Map{})
 	}
+
+	var theme models.Theme
+	c.BodyParser(&theme)
+	s.repos.ThemeRepo.Create(&theme)
+
 	return c.Redirect("/main")
 }
 
