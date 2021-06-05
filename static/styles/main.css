@@ -145,6 +145,10 @@
     text-align: center;
 }
 
+.content__item__table th, .content__item__table td {
+    width: 30%;
+}
+
 .table__members {
     text-align: left;
 }

@@ -2,6 +2,7 @@ package repo
 
 import (
 	"mishaga/internal/models"
+	"time"
 
 	"github.com/jmoiron/sqlx"
 )
@@ -28,14 +29,15 @@ func (t *ThemeCommentRepo) GetAllByThemeIDFull(id int) []*FullThemeComment {
 		`SELECT c.text, u.first_name, u.last_name 
 		FROM theme_comments as c 
 		JOIN users AS u ON c.owner_id = u.id 
-		WHERE c.theme_id = $1`, id)
+		WHERE c.theme_id = $1 
+		ORDER BY c.created_at`, id)
 	return comments
 }
 
 func (t *ThemeCommentRepo) Create(comment *models.ThemeComment) error {
 	return t.db.QueryRow(
-		`INSERT INTO theme_comments (theme_id, owner_id, text)
-		VALUES ($1, $2, $3) RETURNING id`,
-		&comment.ThemeID, &comment.OwnerID, &comment.Text,
+		`INSERT INTO theme_comments (theme_id, owner_id, text, created_at)
+		VALUES ($1, $2, $3, $4) RETURNING id`,
+		&comment.ThemeID, &comment.OwnerID, &comment.Text, time.Now(),
 	).Scan(&comment.ID)
 }
