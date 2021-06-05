@@ -75,7 +75,7 @@ func (s *Server) LoginHandler(c *fiber.Ctx) error {
 }
 
 func (s *Server) MainHandler(c *fiber.Ctx) error {
-	themes := s.repos.ThemeRepo.GetAll()
+	themes := s.repos.ThemeRepo.GetAllWithCommentQuantity()
 	return c.Render("main", fiber.Map{
 		"themes": themes,
 	})
