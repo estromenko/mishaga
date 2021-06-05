@@ -68,7 +68,7 @@ func (s *Server) route() *fiber.App {
 	{
 		private.Get("/main", s.MainHandler)
 		private.Get("/ads", s.AdsHandler)
-		private.Get("/theme", s.ThemeHandler)
+		private.All("/themes", s.ThemeHandler)
 		private.All("/new_theme", s.NewThemeHandler)
 		private.All("/profile", s.ProfileHandler)
 	}

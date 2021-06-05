@@ -21,31 +21,31 @@
                 <tr>
                     <td>
                         <label>Имя</label><br>
-                        <input type="text" class="profile__input" value={{first_name}}>
+                        <input type="text" class="profile__input" name="first_name" value={{user.FirstName}}>
                     </td>
                     <td>
                         <label>Фамилия</label><br>
-                        <input type="text" class="profile__input" value={{last_name}}>
+                        <input type="text" class="profile__input" name="last_name" value={{user.LastName}}>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <label>Почта</label><br>
-                        <input type="email" class="profile__input" value={{email}}>
+                        <input type="email" class="profile__input" name="email" value={{user.Email}}>
                     </td>
                     <td>
                         <label>Общежитие</label><br>
-                        <input type="text" class="profile__input" value={{dorm}}>
+                        <input type="text" class="profile__input" name="dorm" value={{user.Dorm}}>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <label>Пароль</label><br>
-                        <input type="text" class="profile__input">
+                        <label>ВУЗ</label><br>
+                        <input type="text" class="profile__input" name="university" value={{user.University}}>
                     </td>
                     <td>
                         <label>Номер комнаты</label><br>
-                        <input type="number" class="profile__input" value={{room_number}}>
+                        <input type="number" class="profile__input" name="room_number" value={{user.RoomNumber}}>
                     </td>
                 </tr>
                 <tr>

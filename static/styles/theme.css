@@ -67,9 +67,10 @@
     float: right;
 }
 
-
 .content {
     padding: 50px 10%;
+    height: 100%;
+    min-height: 50vh;
 }
 
 .content__comment {
@@ -115,7 +116,7 @@
 }
 
 .commenting__send__image {
-    margin: 15px;
+    margin-top: 15px;
 }
 
 .commenting__anonim {

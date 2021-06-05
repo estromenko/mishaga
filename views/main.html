@@ -24,7 +24,7 @@
             <div class="category__label">Основная</div>
         </div>
         {% for theme in themes %}
-            <a class="content__item" href="theme">
+            <a class="content__item" href="themes?id={{theme.ID}}">
                 <table class="content__item__table">
                     <tr>
                         <th class="table__members">{{theme.Title}}</th>
@@ -32,7 +32,7 @@
                         <th class="table__update">Последнее обновление</th>
                     </tr>
                     <tr>
-                        <td class="table__members">Категория: {{theme.Category}}</td>
+                        <td class="table__members">{{theme.Category}}</td>
                         <td class="table__messages">0</td>
                         <td class="table__update">0</td>
                     </tr>

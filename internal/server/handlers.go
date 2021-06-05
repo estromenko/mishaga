@@ -1,7 +1,9 @@
 package server
 
 import (
+	"fmt"
 	"mishaga/internal/models"
+	"strconv"
 	"time"
 
 	jwt "github.com/form3tech-oss/jwt-go"
@@ -84,7 +86,32 @@ func (s *Server) AdsHandler(c *fiber.Ctx) error {
 }
 
 func (s *Server) ThemeHandler(c *fiber.Ctx) error {
-	return c.Render("theme", fiber.Map{})
+	id, _ := strconv.Atoi(c.Query("id"))
+	if c.Method() == "GET" {
+		comments := s.repos.ThemeCommentRepo.GetAllByThemeIDFull(id)
+		return c.Render("theme", fiber.Map{
+			"comments": comments,
+		})
+	}
+
+	token := c.Locals("user").(*jwt.Token)
+	claims := token.Claims.(jwt.MapClaims)
+	email := claims["email"].(string)
+
+	user := s.repos.UserRepo.GetByEmail(email)
+	if user == nil {
+		s.logger.Debug().Msg(email)
+		return c.Redirect("/login")
+	}
+
+	var comment models.ThemeComment
+	c.BodyParser(&comment)
+	comment.OwnerID = user.ID
+	comment.ThemeID = id
+	s.repos.ThemeCommentRepo.Create(&comment)
+
+	path := fmt.Sprintf("/themes?id=%d", id)
+	return c.Redirect(path)
 }
 
 func (s *Server) NewThemeHandler(c *fiber.Ctx) error {
@@ -100,23 +127,23 @@ func (s *Server) NewThemeHandler(c *fiber.Ctx) error {
 }
 
 func (s *Server) ProfileHandler(c *fiber.Ctx) error {
-	token := c.Locals("user").(*jwt.Token)
-	claims := token.Claims.(jwt.MapClaims)
-	email := claims["email"].(string)
+	if c.Method() == "GET" {
+		token := c.Locals("user").(*jwt.Token)
+		claims := token.Claims.(jwt.MapClaims)
+		email := claims["email"].(string)
 
-	user := s.repos.UserRepo.GetByEmail(email)
-	if user == nil {
-		s.logger.Debug().Msg(email)
-		return c.Redirect("/login")
+		user := s.repos.UserRepo.GetByEmail(email)
+		if user == nil {
+			s.logger.Debug().Msg(email)
+			return c.Redirect("/login")
+		}
+
+		return c.Render("profile", fiber.Map{
+			"user": user,
+		})
 	}
 
-	return c.Render("profile", fiber.Map{
-		"email":       user.Email,
-		"dorm":        user.Dorm,
-		"first_name":  user.FirstName,
-		"last_name":   user.LastName,
-		"room_number": user.RoomNumber,
-	})
+	return c.Render("profile", fiber.Map{})
 }
 
 func (s *Server) NotFoundHandler(c *fiber.Ctx) error {
