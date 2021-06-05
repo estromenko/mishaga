@@ -69,3 +69,7 @@ func (d *Database) Migrate(migrationsPath string) error {
 	d.logger.Info().Msg("Migrated successfully.")
 	return nil
 }
+
+func (d *Database) DB() *sqlx.DB {
+	return d.db
+}

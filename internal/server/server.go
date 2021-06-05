@@ -9,10 +9,13 @@ import (
 	"github.com/rs/zerolog"
 
 	"mishaga/pkg/database"
+
+	jwtware "github.com/gofiber/jwt/v2"
 )
 
 type Config struct {
-	Port int `json:"port"`
+	Port      int    `json:"port"`
+	JWTSecret string `json:"jwt_secret"`
 }
 
 type Server struct {
@@ -39,14 +42,26 @@ func (s *Server) route() *fiber.App {
 
 	app.Use(logger.New())
 
-	app.All("/", s.IndexHandler)
-	app.All("/reg", s.RegistrationHandler)
-	app.All("/login", s.LoginHandler)
-	app.Get("/main", s.MainHandler)
-	app.Get("/ads", s.AdsHandler)
-	app.Get("/theme", s.ThemeHandler)
-	app.All("/new_theme", s.NewThemeHandler)
-	app.All("/profile", s.ProfileHandler)
+	public := app.Group("/")
+	{
+		public.All("/", s.IndexHandler)
+		public.All("/reg", s.RegistrationHandler)
+		public.All("/login", s.LoginHandler)
+	}
+
+	private := app.Group("/")
+	private.Use(jwtware.New(jwtware.Config{
+		SigningKey:   []byte(s.config.JWTSecret),
+		ErrorHandler: s.NotAuthorizedHandler,
+		TokenLookup:  "cookie:token",
+	}))
+	{
+		private.Get("/main", s.MainHandler)
+		private.Get("/ads", s.AdsHandler)
+		private.Get("/theme", s.ThemeHandler)
+		private.All("/new_theme", s.NewThemeHandler)
+		private.All("/profile", s.ProfileHandler)
+	}
 
 	app.Use(s.NotFoundHandler)
 

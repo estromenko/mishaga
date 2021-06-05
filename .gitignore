@@ -1,2 +1,5 @@
 .vscode
 .metals
+/configs/*
+!/configs/example.json
+*.log

@@ -1,8 +1,7 @@
 package server
 
 import (
-	"fmt"
-
+	"github.com/dgrijalva/jwt-go"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -15,7 +14,16 @@ func (s *Server) RegistrationHandler(c *fiber.Ctx) error {
 		return c.Render("reg", fiber.Map{})
 	}
 
-	fmt.Println("User with email \"" + c.FormValue("email") + "\" entered")
+	token := jwt.New(jwt.SigningMethodHS256)
+	claims := token.Claims.(jwt.MapClaims)
+	claims["email"] = c.FormValue("email")
+	t, _ := token.SignedString([]byte(s.config.JWTSecret))
+
+	c.Cookie(&fiber.Cookie{
+		Name:     "token",
+		Value:    t,
+		HTTPOnly: true,
+	})
 
 	return c.Redirect("/main")
 }
@@ -25,7 +33,17 @@ func (s *Server) LoginHandler(c *fiber.Ctx) error {
 		return c.Render("login", fiber.Map{})
 	}
 
-	fmt.Println("User with email \"" + c.FormValue("email") + "\" entered")
+	token := jwt.New(jwt.SigningMethodHS256)
+	claims := token.Claims.(jwt.MapClaims)
+	claims["email"] = c.FormValue("email")
+	t, _ := token.SignedString([]byte(s.config.JWTSecret))
+
+	c.Cookie(&fiber.Cookie{
+		Name:     "token",
+		Value:    t,
+		HTTPOnly: true,
+	})
+
 	return c.Redirect("/main")
 }
 
@@ -54,4 +72,8 @@ func (s *Server) ProfileHandler(c *fiber.Ctx) error {
 
 func (s *Server) NotFoundHandler(c *fiber.Ctx) error {
 	return c.Render("404", fiber.Map{})
+}
+
+func (s *Server) NotAuthorizedHandler(c *fiber.Ctx, err error) error {
+	return c.Redirect("/login")
 }

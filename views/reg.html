@@ -9,13 +9,12 @@
     <form class="reg page__reg" method="POST">
         <h1>Регистрация</h1>
         <div class="reg__form">
-            <input class="form__input" placeholder="Имя" required>
-            <input class="form__input" placeholder="Фамилия" required>
-            <input class="form__input" placeholder="Город" required>
-            <input class="form__input" placeholder="Общежитие" required>
-            <input class="form__input" placeholder="Номер комнаты [не обязательно]">
-            <input class="form__input" placeholder="Общежитие" required>
-            <input class="form__input" placeholder="Пароль" required>
+            <input class="form__input" placeholder="Имя" required name="first_name">
+            <input class="form__input" placeholder="Фамилия" required name="last_name"
+            <input class="form__input" placeholder="Город" required name="city">
+            <input class="form__input" placeholder="Общежитие" required name="dorm">
+            <input class="form__input" placeholder="Номер комнаты [не обязательно]" name="room_number">
+            <input class="form__input" placeholder="Пароль" required name="password">
         </div>
         <div class="reg__buttons">
             <input type="submit" class="reg__buttons__submit" value="Зарегистрироваться">
