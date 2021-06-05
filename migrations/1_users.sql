@@ -5,5 +5,6 @@ CREATE TABLE IF NOT EXISTS users (
     last_name VARCHAR(50) NOT NULL,
     city VARCHAR(255) NOT NULL,
     dorm VARCHAR(255) NOT NULL,
-    room_number INT
+    room_number INT,
+    password VARCHAR(255) NOT NULL
 );

@@ -1,7 +1,10 @@
 package server
 
 import (
-	"github.com/dgrijalva/jwt-go"
+	"mishaga/internal/models"
+	"time"
+
+	jwt "github.com/form3tech-oss/jwt-go"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -11,18 +14,29 @@ func (s *Server) IndexHandler(c *fiber.Ctx) error {
 
 func (s *Server) RegistrationHandler(c *fiber.Ctx) error {
 	if c.Method() == "GET" {
+		c.ClearCookie("token")
 		return c.Render("reg", fiber.Map{})
+	}
+
+	var user models.User
+	if err := c.BodyParser(&user); err != nil {
+		return c.SendString("Error parsing body: " + err.Error())
+	}
+
+	if err := s.services.UserService.Create(&user); err != nil {
+		return c.SendString(err.Error())
 	}
 
 	token := jwt.New(jwt.SigningMethodHS256)
 	claims := token.Claims.(jwt.MapClaims)
-	claims["email"] = c.FormValue("email")
+	claims["email"] = user.Email
 	t, _ := token.SignedString([]byte(s.config.JWTSecret))
 
 	c.Cookie(&fiber.Cookie{
 		Name:     "token",
 		Value:    t,
 		HTTPOnly: true,
+		Expires:  time.Now().Add(time.Hour * 24),
 	})
 
 	return c.Redirect("/main")
@@ -30,18 +44,29 @@ func (s *Server) RegistrationHandler(c *fiber.Ctx) error {
 
 func (s *Server) LoginHandler(c *fiber.Ctx) error {
 	if c.Method() == "GET" {
+		c.ClearCookie("token")
+		return c.Render("login", fiber.Map{})
+	}
+
+	user := s.repos.UserRepo.GetByEmail(c.FormValue("email"))
+	if user == nil {
+		return c.Redirect("/login")
+	}
+
+	if !s.services.UserService.ComparePasswords(user, c.FormValue("password")) {
 		return c.Render("login", fiber.Map{})
 	}
 
 	token := jwt.New(jwt.SigningMethodHS256)
 	claims := token.Claims.(jwt.MapClaims)
-	claims["email"] = c.FormValue("email")
+	claims["email"] = user.Email
 	t, _ := token.SignedString([]byte(s.config.JWTSecret))
 
 	c.Cookie(&fiber.Cookie{
 		Name:     "token",
 		Value:    t,
 		HTTPOnly: true,
+		Expires:  time.Now().Add(time.Hour * 24),
 	})
 
 	return c.Redirect("/main")
@@ -67,7 +92,23 @@ func (s *Server) NewThemeHandler(c *fiber.Ctx) error {
 }
 
 func (s *Server) ProfileHandler(c *fiber.Ctx) error {
-	return c.Render("profile", fiber.Map{})
+	token := c.Locals("user").(*jwt.Token)
+	claims := token.Claims.(jwt.MapClaims)
+	email := claims["email"].(string)
+
+	user := s.repos.UserRepo.GetByEmail(email)
+	if user == nil {
+		s.logger.Debug().Msg(email)
+		return c.Redirect("/login")
+	}
+
+	return c.Render("profile", fiber.Map{
+		"email":       user.Email,
+		"dorm":        user.Dorm,
+		"first_name":  user.FirstName,
+		"last_name":   user.LastName,
+		"room_number": user.RoomNumber,
+	})
 }
 
 func (s *Server) NotFoundHandler(c *fiber.Ctx) error {

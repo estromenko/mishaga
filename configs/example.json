@@ -1,6 +1,9 @@
 {
     "server": {
-        "jwt_secret": "asdasdasdasd"
+        "jwt_secret": "asdasdasdasd",
+        "services": {
+            "salt": "asdasdasdasd"
+        }
     },
     "db": {
         "dsn": "user=postgres password=1234 dbname=postgres host=localhost port=5432 sslmode=disable"

@@ -6,7 +6,7 @@ go 1.14
 require (
 	github.com/andybalholm/brotli v1.0.3 // indirect
 	github.com/cockroachdb/apd v1.1.0 // indirect
-	github.com/dgrijalva/jwt-go v3.2.0+incompatible
+	github.com/form3tech-oss/jwt-go v3.2.3+incompatible
 	github.com/gofiber/fiber/v2 v2.11.0
 	github.com/gofiber/jwt/v2 v2.2.2
 	github.com/gofiber/template v1.6.10
@@ -18,5 +18,6 @@ require (
 	github.com/rs/zerolog v1.22.0
 	github.com/shopspring/decimal v1.2.0 // indirect
 	github.com/spf13/viper v1.7.1
+	golang.org/x/crypto v0.0.0-20210513164829-c07d793c2f9a
 	golang.org/x/sys v0.0.0-20210603125802-9665404d3644 // indirect
 )

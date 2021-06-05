@@ -4,31 +4,41 @@ import (
 	"os"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/favicon"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/template/django"
 	"github.com/rs/zerolog"
 
+	"mishaga/internal/repo"
+	"mishaga/internal/service"
 	"mishaga/pkg/database"
 
 	jwtware "github.com/gofiber/jwt/v2"
 )
 
 type Config struct {
-	Port      int    `json:"port"`
-	JWTSecret string `json:"jwt_secret"`
+	Port      int             `json:"port"`
+	JWTSecret string          `json:"jwt_secret"`
+	Services  *service.Config `json:"services"`
 }
 
 type Server struct {
-	config *Config
-	db     *database.Database
-	logger *zerolog.Logger
+	config   *Config
+	db       *database.Database
+	logger   *zerolog.Logger
+	repos    *repo.Repositories
+	services *service.Services
 }
 
 func NewServer(config *Config, db *database.Database, logger *zerolog.Logger) *Server {
+	repos := repo.InitRepositories(db.DB())
+	services := service.InitServices(repos, config.Services)
 	return &Server{
-		config: config,
-		db:     db,
-		logger: logger,
+		config:   config,
+		db:       db,
+		logger:   logger,
+		repos:    repos,
+		services: services,
 	}
 }
 
@@ -39,7 +49,7 @@ func (s *Server) route() *fiber.App {
 	})
 
 	app.Static("/static", "static")
-
+	app.Use(favicon.New())
 	app.Use(logger.New())
 
 	public := app.Group("/")
