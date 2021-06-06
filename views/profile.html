@@ -10,11 +10,11 @@
 
     <div class="content">
         <h3>Профиль</h3>
-        <form class="profile content__profile">
+        <form class="profile content__profile" method="POST" enctype='multipart/form-data'>
             <div class="profile__image">
-                <img src="static/images/monke1.jpg" class="image__source"><br>
+                <img src="uploads/{{user.Avatar}}" class="image__source"><br>
                 
-                <input type="file" id="image" style="display:none;">
+                <input type="file" id="image" style="display:none;" name="avatar"> 
                 <label for="image" class="image__upload-button">Загрузить аватар</label>
             </div>
             <table class="profile__update-form">
@@ -51,7 +51,7 @@
                 <tr>
                     <td></td>
                     <td>
-                        <input type="submit" class="profile__submit">
+                        <input type="submit" class="profile__submit" value="Сохранить" method="POST">
                     </td>
                 </tr>
             </table>

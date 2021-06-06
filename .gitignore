@@ -1,5 +1,10 @@
 .vscode
 .metals
+
 /configs/*
 !/configs/example.json
+
+/uploads/avatars/*
+!/uploads/avatars/default.png
+
 *.log

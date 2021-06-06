@@ -10,4 +10,5 @@ type User struct {
 	RoomNumber *int   `json:"room_number" db:"room_number" form:"room_number"`
 	University string `json:"university" db:"university" form:"university"`
 	Password   string `json:"password" db:"password" form:"password"`
+	Avatar string `json:"avatar" db:"avatar" form:"avatar"`
 }

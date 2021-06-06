@@ -127,23 +127,36 @@ func (s *Server) NewThemeHandler(c *fiber.Ctx) error {
 }
 
 func (s *Server) ProfileHandler(c *fiber.Ctx) error {
+	token := c.Locals("user").(*jwt.Token)
+	claims := token.Claims.(jwt.MapClaims)
+	email := claims["email"].(string)
+	user := s.repos.UserRepo.GetByEmail(email)
+
+	if user == nil {
+		s.logger.Debug().Msg(email)
+		return c.Redirect("/login")
+	}
+
 	if c.Method() == "GET" {
-		token := c.Locals("user").(*jwt.Token)
-		claims := token.Claims.(jwt.MapClaims)
-		email := claims["email"].(string)
-
-		user := s.repos.UserRepo.GetByEmail(email)
-		if user == nil {
-			s.logger.Debug().Msg(email)
-			return c.Redirect("/login")
-		}
-
 		return c.Render("profile", fiber.Map{
 			"user": user,
 		})
 	}
 
-	return c.Render("profile", fiber.Map{})
+	file, err := c.FormFile("avatar")
+	if err == nil {
+		filename := fmt.Sprintf("avatars/%s%s", file.Filename, time.Now())
+		c.SaveFile(file, fmt.Sprintf("uploads/%s", filename))
+		if err := s.repos.UserRepo.SetUserImage(user.ID, filename); err != nil {
+			return c.SendString(err.Error())
+		}
+	}
+
+	var updated models.User
+	c.BodyParser(&updated)
+	s.repos.UserRepo.UpdateUser(user.ID, &updated)
+
+	return c.Redirect("/profile")
 }
 
 func (s *Server) NotFoundHandler(c *fiber.Ctx) error {

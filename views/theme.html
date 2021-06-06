@@ -14,7 +14,7 @@
         {% for comment in comments %}
             <div class="content__comment">
                 <div class="comment__image-box">
-                    <img src="static/images/monke1.jpg" class="image-box__image"><br>
+                    <img src="uploads/{{comment.Avatar}}" width="200" height="200" class="image-box__image"><br>
                     <b>{{comment.FirstName}} {{comment.LastName}}</b>
                 </div>
                 <div class="comment__text">

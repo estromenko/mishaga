@@ -12,9 +12,8 @@ type ThemeCommentRepo struct {
 }
 
 type FullThemeComment struct {
-	Text      string `json:"text" db:"text" form:"text"`
-	FirstName string `json:"first_name" db:"first_name"`
-	LastName  string `json:"last_name" db:"last_name"`
+	models.User
+	Text string `json:"text" db:"text" form:"text"`
 }
 
 func (t *ThemeCommentRepo) GetAllByThemeID(id int) []*models.ThemeComment {
@@ -26,7 +25,7 @@ func (t *ThemeCommentRepo) GetAllByThemeID(id int) []*models.ThemeComment {
 func (t *ThemeCommentRepo) GetAllByThemeIDFull(id int) []*FullThemeComment {
 	var comments []*FullThemeComment
 	t.db.Select(&comments,
-		`SELECT c.text, u.first_name, u.last_name 
+		`SELECT c.text, u.*
 		FROM theme_comments as c 
 		JOIN users AS u ON c.owner_id = u.id 
 		WHERE c.theme_id = $1 

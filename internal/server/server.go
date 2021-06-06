@@ -49,6 +49,8 @@ func (s *Server) route() *fiber.App {
 	})
 
 	app.Static("/static", "static")
+	app.Static("/uploads", "uploads")
+
 	app.Use(favicon.New())
 	app.Use(logger.New())
 
